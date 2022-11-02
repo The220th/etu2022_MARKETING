@@ -39,6 +39,10 @@ def writeFile(fileName : str, text : str):
 def remove_file(path: str) -> None:
     os.unlink(path)
 
+def merge_two_dicts(x: dict, y: dict) -> dict:
+    z = x.copy()
+    z.update(y)
+    return z
 
 
 app = FastAPI()
@@ -65,7 +69,8 @@ action: str = Form(...)
         add_vote_entry(user_vote)
         #user_vote_str = [qs[q_html_1], qs[q_html_2], qs[q_html_3], qs[q_html_4], qs[q_html_5], qs[q_html_6], qs[q_html_7], qs[q_html_8], qs[q_html_9], qs[q_html_10]]
         user_vote_str = [f"{li+1}: {qs[user_vote[li]]}" for li in range(10)]
-        res = templates.TemplateResponse('post.html', {'request': request, "bye_text" : f"thx for interview! You choose {user_vote_str}"} | qs)
+        buff_dict = {'request': request, "bye_text" : f"thx for interview! You choose {user_vote_str}"}
+        res = templates.TemplateResponse('post.html',  merge_two_dicts(buff_dict, qs))
         return res
 
 @app.get("/see")
@@ -76,7 +81,8 @@ def main(request: Request):
 
 @app.get("/")
 def main(request: Request):
-    res = templates.TemplateResponse('post.html', {'request': request, "bye_text" : ""} | qs)
+    buff_dict = {'request': request, "bye_text" : ""}
+    res = templates.TemplateResponse('post.html', merge_two_dicts(buff_dict, qs))
     return res
 
 def add_vote_entry(user_vote: list):
