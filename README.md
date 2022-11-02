@@ -7,7 +7,7 @@
 ``` bash
 > pip install --upgrade pip
 > pip3 install uvicorn standard
-> pip3 install fastapi python-multipart starlette jinja2
+> pip3 install fastapi python-multipart starlette jinja2 matplotlib
 ```
 
 ## Настройка и запуск
@@ -31,4 +31,8 @@
 > python3 start.py
 ```
 
-И зайти в браузере по ip и port, который был указан в файле settings.json.
+И зайти в браузере по `ip` и `port`, который был указан в файле `settings.json`.
+
+По адресу `http://{ip}:{port}` будет опрос.
+
+По адресу `http://{ip}:{port}/see` будут результаты. 
