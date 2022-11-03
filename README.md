@@ -5,9 +5,11 @@
 ## Зависимости
 
 ``` bash
-> pip install --upgrade pip
-> pip3 install uvicorn standard
-> pip3 install fastapi python-multipart starlette jinja2 matplotlib
+> python3 -m venv {venv_folder}
+> source {venv_folder}/bin/acticate
+
+> pip3 install --upgrade pip
+> pip3 install -r requirements.txt
 ```
 
 ## Настройка и запуск
@@ -22,6 +24,8 @@
 	"port": "8085"
 }
 ```
+
+Также данный порт нужно прописать в `Dockerfile`. 
 
 Вместо `127.0.0.1` можно указать, например, `0.0.0.0` или `192.168.1.228`.
 
